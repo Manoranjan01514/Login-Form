@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Registration</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #acb6e5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 400px;
+      background: #ffffffdd;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(6px);
+    }
+
+    .form-box {
+      display: none;
+      flex-direction: column;
+    }
+
+    .form-box.active {
+      display: flex;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    input {
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #3498db;
+      box-shadow: 0 0 6px #3498db66;
+    }
+
+    .toggle-password {
+      text-align: right;
+      margin-top: -8px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #2980b9;
+    }
+
+    button {
+      padding: 12px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #2980b9;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 15px;
+      color: #333;
+    }
+
+    a {
+      color: #2c3e50;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    a:hover {
+      color: #1abc9c;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <!-- Login Form -->
+    <form class="form-box active" id="loginForm">
+      <h2>Login</h2>
+      <input type="email" placeholder="Email" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      <div class="toggle-password" onclick="togglePassword('loginPassword')">Show</div>
+      <button type="submit">Login</button>
+      <p>Don't have an account? <a onclick="switchForm('registerForm')">Register</a></p>
+    </form>
+
+    <!-- Register Form -->
+    <form class="form-box" id="registerForm">
+      <h2>Register</h2>
+      <input type="text" placeholder="Full Name" required />
+      <input type="email" placeholder="Email" required />
+      <input type="password" id="registerPassword" placeholder="Password" required />
+      <div class="toggle-password" onclick="togglePassword('registerPassword')">Show</div>
+      <button type="submit">Register</button>
+      <p>Already have an account? <a onclick="switchForm('loginForm')">Login</a></p>
+    </form>
+  </div>
+
+  <script>
+    function togglePassword(id) {
+      const input = document.getElementById(id);
+      const type = input.getAttribute("type");
+      input.setAttribute("type", type === "password" ? "text" : "password");
+    }
+
+    function switchForm(formId) {
+      document.querySelectorAll('.form-box').forEach(form => {
+        form.classList.remove('active');
+      });
+      document.getElementById(formId).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
